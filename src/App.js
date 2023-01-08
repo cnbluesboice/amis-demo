@@ -1,23 +1,55 @@
-import logo from './logo.svg';
+import { render as renderAmis } from "amis";
+import { ToastComponent, AlertComponent, alert, confirm, toast } from 'amis-ui';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <p>通过amis渲染的UI</p>
+      {renderAmis(
+        {
+          "type": "page",
+          "body": [
+            {
+              "type": "tpl",
+              "tpl": "Hello World!"
+            },
+            {
+              "type": "divider"
+            },
+            {
+              "type": "form",
+              "body": [
+                {
+                  "type": "input-text",
+                  "name": "name",
+                  "label": "姓名"
+                },
+                {
+                  "type": "input-text",
+                  "name": "name",
+                  "label": "姓名"
+                },
+                {
+                  "type": "input-text",
+                  "name": "name",
+                  "label": "姓名"
+                },
+                {
+                  "type": "input-text",
+                  "name": "name",
+                  "label": "姓名"
+                },
+                {
+                  "type": "input-text",
+                  "name": "name",
+                  "label": "姓名11111"
+                }
+              ]
+            }
+          ]
+        }
+      )}
     </div>
   );
 }
