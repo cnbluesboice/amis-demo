@@ -3,14 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppProvider } from '@shopify/polaris';
 // amis样式
 import 'amis/lib/themes/cxd.css';
 import 'amis/lib/helper.css';
 import 'amis/sdk/iconfont.css';
+import "@shopify/polaris/build/esm/styles.css";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <App />
+  <AppProvider>
+    <App />
+  </AppProvider>
   // <React.StrictMode>
   //   <App />
   // </React.StrictMode>
