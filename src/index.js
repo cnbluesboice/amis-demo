@@ -13,7 +13,7 @@ import "@shopify/polaris/build/esm/styles.css";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <AppProvider>
-    <App />
+    <App initialCount={0} />
   </AppProvider>
   // <React.StrictMode>
   //   <App />

@@ -1,21 +1,49 @@
-import { render as renderAmis } from "amis";
-import { ToastComponent, AlertComponent, alert, confirm, toast } from 'amis-ui';
+import { useReducer } from "react";
+// import { render as renderAmis } from "amis";
+// import { ToastComponent, AlertComponent, alert, confirm, toast } from 'amis-ui';
 import { Button, Banner } from "@shopify/polaris";
 import { data } from "./data";
 import { mapData } from "./map";
 import './App.css';
 
-function App() {
-  const bodyData = data.map((item) => ({
-    ...item.field,
-    name: mapData[item.field.type],
-    type: mapData[item.field.type],
-    value: item.field.default,
-  }))
+// 处理 初始state
+function init(initialCount) {
+  return { count: initialCount };
+}
+
+// 处理 state 更新规则的函数，并返回新的 state
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    case 'reset':
+      return init(action.payload);
+    default:
+      throw new Error();
+  }
+}
+
+function App({ initialCount }) {
+  const [state, dispatch] = useReducer(reducer, initialCount, init);
+  // const bodyData = data.map((item) => ({
+  //   ...item.field,
+  //   name: mapData[item.field.type],
+  //   type: mapData[item.field.type],
+  //   value: item.field.default,
+  // }))
+  console.log(state, 'state');
   return (
     <div className="App">
-      <p>通过amis渲染的UI</p>
-      {renderAmis(
+      <button
+        onClick={() => dispatch({ type: 'reset', payload: initialCount })}>
+        Reset
+      </button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>-</button>
+      <button onClick={() => dispatch({ type: 'increment' })}>+</button>
+      {/* <p>通过amis渲染的UI</p> */}
+      {/* {renderAmis(
         {
           "type": "page",
           body: [
@@ -60,7 +88,7 @@ function App() {
             }
           ]
         }
-      )}
+      )} */}
     </div>
   );
 }
